@@ -5,6 +5,7 @@ const revealItems = document.querySelectorAll("[data-reveal]");
 const faqItems = document.querySelectorAll(".faq-item");
 const testimonialTrack = document.querySelector(".testimonial-track");
 const clinicCarousel = document.querySelector(".clinic-carousel");
+const aboutCarousel = document.querySelector(".about-carousel");
 
 const updateHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -115,6 +116,64 @@ if (clinicCarousel) {
   slides.forEach((_, index) => {
     const dot = document.createElement("button");
     dot.className = "clinic-dot";
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Mostrar foto ${index + 1}`);
+    dot.addEventListener("click", () => {
+      goToSlide(index);
+      restartAutoplay();
+    });
+    dots.appendChild(dot);
+  });
+
+  previous.addEventListener("click", () => {
+    goToSlide(activeIndex - 1);
+    restartAutoplay();
+  });
+
+  next.addEventListener("click", () => {
+    goToSlide(activeIndex + 1);
+    restartAutoplay();
+  });
+
+  renderCarousel();
+  restartAutoplay();
+}
+
+if (aboutCarousel) {
+  const track = aboutCarousel.querySelector(".about-carousel-track");
+  const slides = Array.from(aboutCarousel.querySelectorAll(".about-slide"));
+  const previous = aboutCarousel.querySelector(".about-prev");
+  const next = aboutCarousel.querySelector(".about-next");
+  const dots = aboutCarousel.querySelector(".about-dots");
+  let activeIndex = 0;
+  let autoplayId;
+
+  const renderCarousel = () => {
+    track.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+    slides.forEach((slide, index) => {
+      slide.classList.toggle("is-active", index === activeIndex);
+    });
+
+    dots.querySelectorAll(".about-dot").forEach((dot, index) => {
+      dot.classList.toggle("is-active", index === activeIndex);
+      dot.setAttribute("aria-current", index === activeIndex ? "true" : "false");
+    });
+  };
+
+  const goToSlide = (index) => {
+    activeIndex = (index + slides.length) % slides.length;
+    renderCarousel();
+  };
+
+  const restartAutoplay = () => {
+    window.clearInterval(autoplayId);
+    autoplayId = window.setInterval(() => goToSlide(activeIndex + 1), 2000);
+  };
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.className = "about-dot";
     dot.type = "button";
     dot.setAttribute("aria-label", `Mostrar foto ${index + 1}`);
     dot.addEventListener("click", () => {
