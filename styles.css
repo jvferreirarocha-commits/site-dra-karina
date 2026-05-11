@@ -599,6 +599,98 @@ textarea {
   background: var(--gold);
 }
 
+.why {
+  overflow: hidden;
+  padding-bottom: 0;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(185, 138, 56, 0.13), transparent 34%),
+    linear-gradient(180deg, var(--white), var(--soft-white));
+}
+
+.why.section {
+  padding-bottom: 0;
+}
+
+.why-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px) minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(22px, 4vw, 46px);
+  margin-top: 42px;
+}
+
+.why-column {
+  display: grid;
+  align-self: center;
+  gap: 28px;
+  padding-bottom: 74px;
+}
+
+.why-column-left .why-card {
+  text-align: right;
+}
+
+.why-card {
+  position: relative;
+  padding: 0;
+  transition: transform 240ms ease;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+}
+
+.why-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.why-card h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2vw, 1.48rem);
+  font-weight: 500;
+  line-height: 1.12;
+}
+
+.why-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.why-photo {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  margin: 0;
+}
+
+.why-photo::before {
+  content: "";
+  position: absolute;
+  inset: 12% -6% 0;
+  z-index: -1;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(180deg, rgba(185, 138, 56, 0.1), rgba(185, 138, 56, 0.03));
+}
+
+.why-photo img {
+  width: min(100%, 420px);
+  max-height: min(72vw, 720px);
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 28px 34px rgba(53, 37, 21, 0.18));
+}
+
 .testimonials {
   overflow: hidden;
   background: var(--white);
@@ -969,6 +1061,19 @@ textarea {
     grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1fr);
     gap: 34px;
   }
+
+  .why-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 320px) minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .why-card {
+    padding: 0;
+  }
+
+  .why-card p {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 860px) {
@@ -1083,6 +1188,7 @@ textarea {
   .about-grid,
   .faq-grid,
   .clinic-layout,
+  .why-layout,
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1112,6 +1218,42 @@ textarea {
 
   .clinic-copy {
     max-width: 680px;
+  }
+
+  .why-layout {
+    margin-top: 34px;
+  }
+
+  .why-column {
+    gap: 22px;
+    padding-bottom: 0;
+  }
+
+  .why-column-left {
+    order: 1;
+  }
+
+  .why-column-right {
+    order: 2;
+  }
+
+  .why-photo {
+    order: 3;
+    min-height: 0;
+    margin-top: 24px;
+  }
+
+  .why-photo::before {
+    inset: 8% 14% 0;
+  }
+
+  .why-photo img {
+    width: min(74vw, 330px);
+    max-height: 520px;
+  }
+
+  .why-column-left .why-card {
+    text-align: left;
   }
 
   .clinic-slide img {
@@ -1161,6 +1303,15 @@ textarea {
 
   .service-card img {
     aspect-ratio: 1.18 / 0.82;
+  }
+
+  .why-photo::before {
+    inset: 8% 4% 0;
+  }
+
+  .why-photo img {
+    width: min(82vw, 310px);
+    max-height: 480px;
   }
 
   .clinic-slide img {
