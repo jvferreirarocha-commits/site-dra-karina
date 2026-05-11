@@ -1127,7 +1127,23 @@ textarea {
 @media (max-width: 640px) {
   .hero,
   .hero-image {
-    min-height: 700px;
+    min-height: 760px;
+  }
+
+  .hero-image {
+    object-fit: contain;
+    object-position: center top;
+    background: #231f20;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(22, 15, 10, 0.06) 0%, rgba(22, 15, 10, 0.12) 34%, rgba(22, 15, 10, 0.92) 50%, rgba(22, 15, 10, 0.9) 100%);
+  }
+
+  .hero-content {
+    padding-top: clamp(300px, 78vw, 470px);
+    padding-bottom: 70px;
   }
 
   .hero-actions {
